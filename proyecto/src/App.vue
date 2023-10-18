@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    
     <v-app-bar
       app
       color="primary"
@@ -54,6 +55,7 @@ export default {
       {nombre: "About", ruta: "/about"},
       {nombre: "Usuarios", ruta: "/usuarios"},
       {nombre: "Imagenes", ruta: "/images"},
+      {nombre: "Clientes", ruta:'/clients'},
     ]
   }),
   methods:{

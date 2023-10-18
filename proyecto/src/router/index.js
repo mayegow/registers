@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import About from '../views/AboutView.vue'
 import Usuarios from '../views/Usuarios.vue'
 import ImagesView from '../views/ImagesView.vue'
+import ClientsView from '../views/ClientsView.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/images',
     name: 'images',
     component: ImagesView
+  },
+  {
+    path: '/clients',
+    name: 'clients',
+    component: ClientsView
   },
   
 ]
