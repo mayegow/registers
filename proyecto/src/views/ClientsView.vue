@@ -1,7 +1,7 @@
 <template>
     <div class="container w-100">
         <h1 class="text-center text-uppercase">Clientes {{server}}</h1>
-        <v-row>
+        <v-row class="mt-5">
             <appClients :clients="clients" :headers="headers" />
         </v-row>
           

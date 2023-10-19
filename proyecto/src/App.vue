@@ -51,10 +51,6 @@ export default {
   data: () => ({
     //
     rutas: [
-      {nombre: "Home", ruta: "/"},
-      {nombre: "About", ruta: "/about"},
-      {nombre: "Usuarios", ruta: "/usuarios"},
-      {nombre: "Imagenes", ruta: "/images"},
       {nombre: "Clientes", ruta:'/clients'},
     ]
   }),
