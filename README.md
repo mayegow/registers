@@ -10,4 +10,6 @@ Download this repository
 
 # Adds
 
-this project runs with backend repo node_back
+this project runs with backend repo: backnode
+
+# Enjoy it
