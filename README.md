@@ -2,7 +2,7 @@
 This project run with Vue 2
 
 # How to run
-===
+
 Download this repository 
 ===
     $ git clone <this_repo>
