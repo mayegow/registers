@@ -13,6 +13,6 @@ Download this repository
 
 # Adds
 
-this project runs with backend repo: backnode
+This project runs with backend repo: backnode
 
 # Enjoy it
