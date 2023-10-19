@@ -8,8 +8,11 @@
         >
          
           <v-card>
-            <v-card-title>
-              <span class="text-h5">Nuevo Cliente</span>
+            <v-card-title >
+              <span v-if="data.id == 0" class="text-h5">Nuevo Cliente</span>
+              <span v-else class="text-h5">Actualizar Cliente</span>
+              <v-spacer></v-spacer>
+              <span v-if="data.id > 0" class="text-h5">ID: {{ data.id }}</span>
             </v-card-title>
             <v-card-text>
               <v-container>
@@ -23,7 +26,7 @@
                       label="Nombre Completo*"
                       required
                       v-model="data.name"
-                      @keyup="onText('name', name)"
+                      :keyup="onText(data.name)"
 
                     ></v-text-field>
                   </v-col>
@@ -35,8 +38,9 @@
                     <v-text-field
                       label="Edad*"
                       required
+                      type="number"
                       v-model="data.age"
-                      @keyup="onText('age', age)"
+                      :keyup="onText(data.age)"
 
                     ></v-text-field>
                   </v-col>
@@ -48,7 +52,7 @@
                     <v-text-field
                       label="Profesión*"
                       v-model="data.profession"
-                      @keyup="onText('profession', profession)"
+                      :keyup="onText(data.profession)"
                       required
                     ></v-text-field>
                   </v-col>
@@ -69,11 +73,20 @@
                 Cerrar
               </v-btn>
               <v-btn
+                v-if="data.id == 0"
                 color="success"
                 variant="text"
-                @click="emitEvento()"
+                @click="addClient()"
               >
                 Guardar
+              </v-btn>
+              <v-btn
+                v-else
+                color="success"
+                variant="text"
+                @click="updateClient()"
+              >
+                Actualizar
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -83,34 +96,37 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     props: [
         "dialog",
-        "name",
-        "age",
-        "profession",
-        "createRegister"
+        "data",
     ],
     data(){
         return{
-            data: {
-                name: this.name,
-                age: this.age,
-                profession: this.profession
-            }
+            
             
         }
     },
     methods:{
+      ...mapActions('clients', ['createRegister', 'updateRegister']),
         closeDialog(){
             this.$emit('dialog', false)
         },
-        onText(variable, value){
-            this.$emit(variable, value)
+        onText(value){
+            this.$emit('data', value)
         },
-        emitEvento() {
-            console.log("tratando de ejecutar evento")
-            this.$on('createRegister', this.createRegister(this.data));
+        addClient() {
+            console.log("llamando al evento para agregar un registro en la base de datos")
+            console.log(this.data)
+            this.createRegister(this.data)
+            this.closeDialog()
+            
+          },
+          updateClient(){
+            console.log("actualizando data de: ", this.data.id)
+            this.updateRegister(this.data)
+            this.closeDialog()
         }
     }
 }

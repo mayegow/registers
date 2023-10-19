@@ -1,6 +1,6 @@
 <template>
     <div class="container col-12">
-        <DialogApp :dialog="dialog" @dialog="dialog = $event" @name="data.name = $event" @age="data.age = $event" @profession="data.profession = $event" @createClient="createRegister = $event" :createRegister="createRegister(this.data)"/>
+        <DialogApp :dialog="dialog" :data="data" @dialog="dialog = $event"/>
         <div>
             <v-card>
                 <v-card-title>
@@ -102,11 +102,9 @@ export default {
             search:"",
             deleteModal: false,
             dialog: false,
-            data: {
-                name:"",
-                age:"",
-                profession:""
-            }
+            data:{}
+
+            
         }
     },
     
@@ -123,7 +121,8 @@ export default {
 
         },
         editItem(item){
-
+            this.data = item
+            this.dialog = true
         },
         deleteItem(item){
             this.$alertify.confirm(`¿Estas seguro de querer eliminar este registro?: ${item.id}`,
@@ -137,6 +136,13 @@ export default {
             );
         },
         createItem(){
+            this.data = {
+                id: 0,
+                name:"",
+                age:0,
+                profession:""
+            }
+            console.log(this.data.id, "###########---->")
             this.dialog = true
         },
         createClient(){

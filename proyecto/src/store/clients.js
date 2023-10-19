@@ -49,12 +49,23 @@ export default {
     },
     async createRegister({commit, dispatch}, data){
       console.log(data, "====== AQUI SE ESTA AGREGANDO LA INFORMACION")
+      const url = 'http://localhost:8081/api/clients'
       const settings = {
-        headers: JSON.stringify( {"Content-Type": "application/json"}),
-        body: JSON.stringify(data)
+        headers:{'Content-Type': 'application/json'},
       }
       try{
-        const res = await axios.post(`http://localhost:8081/api/clients`, settings)
+        const res = await axios.post(url, data, settings)
+        dispatch('loadClients')
+      } catch(err){
+        console.log(err, "error")
+      }
+    },
+    async updateRegister({commit, dispatch}, data){
+      const settings = {
+        headers: {"Content-Type": "application/json"},
+      }
+      try{
+        const res = await axios.patch(`http://localhost:8081/api/clients`, data, settings)
         dispatch('loadClients')
       } catch(err){
         console.log(err, "error")
